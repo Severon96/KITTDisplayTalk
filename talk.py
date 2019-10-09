@@ -1,0 +1,38 @@
+#!/usr/bin/python
+
+import sys
+import getopt
+sys.path.insert(1, 'conversation')
+sys.path.insert(2, 'display')
+from display import runDisplay
+from conversation import runConversation
+
+def main(argv):
+    printTitle()
+    try:
+        opts, args = getopt.getopt(argv, "dc:")
+    except getopt.GetoptError as err:
+        print(err)
+        print('test.py -d (--display) enables Demo-Mode for Displaying KITT')
+        print('test.py -c (--conversation) enables Conversation-Mode for talking to KITT')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ('-d', "--display"):
+            print("Entering Displaying-Mode")
+            runDisplay()
+            sys.exit()
+        elif opt in ("-c", "--conversation"):
+            print("Entering Conversation-Mode")
+            runConversation()
+
+
+def printTitle():
+    print("#########################################")
+    print("#\t\tKITT Display Talk\t#")
+    print("# Author:  Dominik Mack\t\t\t#")
+    print("# Contact: dominik.mack@icloud.com\t#")
+    print("# Version: 0.1a\t\t\t\t#")
+    print("#########################################")
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
