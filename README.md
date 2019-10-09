@@ -13,11 +13,8 @@ It think is pretty self-explaining just a few informations regarding the `repeat
   "display" : {
     "audio_format" : ".mp3",
     "repeat_duration" : 15,
-    "audio_break" : 5,
-    "voicefiles" : [
-      "test1",
-      "test2"
-    ]
+    "audio_break" : 5
   }
 }
 ```
+The audiofiles for the Display-Mode are pulled out of the `display_audio`-Folder. So everything, that you want to be played when running the Display-Mode needs to be placed in the specified Folder.

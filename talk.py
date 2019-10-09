@@ -14,7 +14,8 @@ def main(argv):
     except getopt.GetoptError as err:
         print(err)
         print('test.py -d (--display) enables Demo-Mode for Displaying KITT')
-        print('test.py -c (--conversation) enables Conversation-Mode for talking to KITT')
+        #TODO Activate, when implementing the Conversation-Mode
+        #print('test.py -c (--conversation) enables Conversation-Mode for talking to KITT')
         sys.exit(2)
     startModes(opts)
 
