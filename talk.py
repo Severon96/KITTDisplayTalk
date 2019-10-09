@@ -16,15 +16,19 @@ def main(argv):
         print('test.py -d (--display) enables Demo-Mode for Displaying KITT')
         print('test.py -c (--conversation) enables Conversation-Mode for talking to KITT')
         sys.exit(2)
+    startModes(opts)
+
+def startModes(opts):
     for opt, arg in opts:
         if opt in ('-d', "--display"):
-            print("Entering Displaying-Mode")
+            printModeEnteringInformation("Displaying-Mode")
             runDisplay()
-            sys.exit()
         elif opt in ("-c", "--conversation"):
-            print("Entering Conversation-Mode")
+            printModeEnteringInformation("Conversation-Mode")
             runConversation()
 
+def printModeEnteringInformation(modeName):
+    print("Entering " + modeName)
 
 def printTitle():
     print("#########################################")
