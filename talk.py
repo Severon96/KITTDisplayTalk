@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#TODO Create Shell script for Setup!
+
 import sys
 import getopt
 sys.path.insert(1, 'conversation')
@@ -24,6 +26,7 @@ def startModes(opts):
         if opt in ('-d', "--display"):
             printModeEnteringInformation("Displaying-Mode")
             runDisplay()
+        #TODO Implement!
         elif opt in ("-c", "--conversation"):
             printModeEnteringInformation("Conversation-Mode")
             runConversation()

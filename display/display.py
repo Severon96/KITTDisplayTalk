@@ -14,6 +14,7 @@ audiofiles = None
 def runDisplay():
     printDisplayModeTitle()
     loadConfig()
+    #TODO Print config!
     loadAudioFiles()
     playAudio()
 
@@ -24,6 +25,7 @@ def playAudio():
         if(fileCount + 1 > len(audiofiles)):
             fileCount = 0
         
+        #TODO Rename Files here!
         current_file_name = audiofiles[fileCount]
         
         print("Now Playing: " + current_file_name + "\r")
@@ -45,7 +47,7 @@ def playAudio():
 
 def loadAudioFiles():
     global audiofiles
-    audiofiles = [f for f in listdir(audio_path) if isfile(join(audio_path, f)) and f.endswith(".mp3")]
+    audiofiles = [f for f in listdir(audio_path) if isfile(join(audio_path, f)) and f.endswith(".mp3")] #TODO Adjust to actual File-Format Config!
 
 def loadConfig():
     global audio_file_type
