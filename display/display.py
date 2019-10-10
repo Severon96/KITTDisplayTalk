@@ -39,6 +39,9 @@ def playAudio():
         pauseAudioOutput(soundDuration)
         
         fileCount = fileCount + 1
+    
+    print("Display-Mode finished... Exiting")
+    sys.exit()
 
 def loadAudioFiles():
     global audiofiles
