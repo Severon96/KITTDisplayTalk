@@ -13,18 +13,19 @@ echo
 echo "If the Script fails because of missing Admin privileges, run it again with the sudo-Command."
 echo
 
-command -v python >/dev/null 2>&1 || {
-    echo "Python is required for $application_name."
-    echo "Please install it for the application to work."
+command -v python3 >/dev/null 2>&1 || {
+    echo "Python3 is required for $application_name."
+    echo "Please install Python3 to continue the installation."
     exit
 }
 
-echo "Great, Python is installed. Now we can proceed."
+echo "Great, Python3 is installed. Now we can proceed."
 
 command -v pip >/dev/null 2>&1 || {
     echo "Pip is required for $application_name."
-    echo "Please install it for the application to work."
-    exit
+    echo "Starting Pip-Installation..."
+    curl https://bootstrap.pypa.io/get-pip.py > get-pip.py
+    sudo python get-pip.py
 }
 
 echo "Great, Pip is installed. Now we can proceed."
