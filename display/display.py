@@ -1,4 +1,4 @@
-import playsound, json, os, time, vlc, sys
+import json, os, time, vlc, sys
 from os import listdir
 from os.path import isfile, join
 from mutagen.mp3 import MP3
@@ -14,8 +14,8 @@ audiofiles = None
 def runDisplay():
     printDisplayModeTitle()
     loadConfig()
-    #TODO Print config!
     loadAudioFiles()
+    printConfig()
     playAudio()
 
 def playAudio():
@@ -25,12 +25,14 @@ def playAudio():
         if(fileCount + 1 > len(audiofiles)):
             fileCount = 0
         
-        #TODO Rename Files here!
         current_file_name = audiofiles[fileCount]
         
-        print("Now Playing: " + current_file_name + "\r")
-
+        if " " in current_file_name:
+            current_file_name = renameAudiofile(audio_path, current_file_name)
+        
         current_file_path = audio_path + "/" + current_file_name
+        
+        print("Now Playing: " + current_file_name + "\r")
         
         player = vlc.MediaPlayer(current_file_path)
         player.play()
@@ -47,7 +49,9 @@ def playAudio():
 
 def loadAudioFiles():
     global audiofiles
-    audiofiles = [f for f in listdir(audio_path) if isfile(join(audio_path, f)) and f.endswith(".mp3")] #TODO Adjust to actual File-Format Config!
+    global audio_file_type
+    audio_file_type = str(audio_file_type.encode("utf-8"), "utf-8")
+    audiofiles = [f for f in listdir(audio_path) if isfile(join(audio_path, f)) and f.endswith(audio_file_type)]
 
 def loadConfig():
     global audio_file_type
@@ -64,5 +68,20 @@ def pauseAudioOutput(currentSoundDuration):
     time.sleep(currentSoundDuration)
     time.sleep(audio_break)
 
+def renameAudiofile(audio_path, filename):
+    newName = filename.replace(" ", "_")
+    os.rename(audio_path + "/" + filename, audio_path + "/" + newName)
+    return newName
+    
+def printConfig():
+    print
+    print("############ CONFIG #############")
+    print("#\tAudio-Type: " + audio_file_type + "\t#")
+    print("#\tRepeat-Duration: " + str(repeat_duration) + "\t#")
+    print("#\tAudio-Break: " + str(audio_break) + "\t\t#")
+    print("#\tAudio-Files loaded: " + str(len(audiofiles)) + "\t#")
+    print("#################################")
+    print
+     
 def printDisplayModeTitle():
     print("#### DISPLAY MODE ####")
