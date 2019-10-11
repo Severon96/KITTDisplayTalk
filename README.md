@@ -22,7 +22,7 @@ The Script now sets up the Environment and after that you can start configure th
 
 # Config
 
-I think it's pretty self-explaining but just a few informations regarding the `repeat_duration` and the `audio_break`:
+I think it's pretty self-explaining but just a few informations regarding the `repeat_duration` and `audio_break`:
 
 - the unit for `repeat_duration` is minutes. So if you want it to run for 2 hours, you need to enter `120`
 - the unit for `audio_break` is seconds. So if you want it to pause for 2 minutes, you need to enter `120`
