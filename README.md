@@ -38,6 +38,9 @@ I think it's pretty self-explaining but just a few informations regarding the `r
 ```
 The audiofiles for the Display-Mode are pulled out of the `display_audio`-Folder. So everything, that you want to be played when running the Display-Mode needs to be placed in the specified Folder.
 
+### Regarding File-Names:
+To prevent problems with the modules, that are reading the audiofiles, please don't use special characters in your filenames. 
+
 # Starting the Application
 When configured the Application can be started by using the start.sh or entering following command in your bash:
 
