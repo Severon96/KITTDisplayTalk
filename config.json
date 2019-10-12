@@ -3,5 +3,17 @@
         "audio_format": ".mp3",
         "repeat_duration": 15,
         "audio_break": 5
+    },
+    "conversation": {
+        "language": "de-DE",
+        "mappings": [
+            {
+                "file": "das_klingt_ja_sehr_gastfreundlich.mp3",
+                "keywords": [
+                    "nicht",
+                    "willkommen"
+                ]
+            }
+        ]
     }
 }
