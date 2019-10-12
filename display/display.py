@@ -2,6 +2,7 @@ import json, os, time, vlc, sys
 from os import listdir
 from os.path import isfile, join
 from mutagen.mp3 import MP3
+from video import runVideoPlayer
 
 audio_path = os.getcwd() + "/display_audio"
 
