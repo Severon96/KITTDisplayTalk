@@ -12,7 +12,7 @@ from conversation import runConversation
 def main(argv):
     printTitle()
     try:
-        opts, args = getopt.getopt(argv, "d:c")
+        opts, args = getopt.getopt(argv, "dc:c")
     except getopt.GetoptError as err:
         print(err)
         print('test.py -d (--display) enables Demo-Mode for Displaying KITT')
