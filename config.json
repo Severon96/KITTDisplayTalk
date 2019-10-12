@@ -4,20 +4,5 @@
         "repeat_duration": 15,
         "audio_break": 5,
         "video_format": ".mp4"
-    },
-    "conversation": {
-        "language": "de-DE",
-        "mappings": [
-            {
-                "files": [
-                    "ich_bin_der_knight_industries_2000_meine_serien_nummer_lautet_227529.mp3"
-                ],
-                "keywords": [
-                    "wer bist du",
-                    "wie heisst du",
-                    "stell dich vor"
-                ]
-            }
-        ]
     }
 }

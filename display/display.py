@@ -1,4 +1,4 @@
-import json, os, time, vlc, sys
+import json, os, time, vlc, sys, thread
 from os import listdir
 from os.path import isfile, join
 from mutagen.mp3 import MP3
@@ -9,15 +9,27 @@ audio_path = os.getcwd() + "/display_audio"
 audio_file_type = ""
 repeat_duration = 0
 audio_break = 0
-
 audiofiles = None
+
+audio_thread = None
+video_thread = None
 
 def runDisplay():
     printDisplayModeTitle()
     loadConfig()
     loadAudioFiles()
     printConfig()
-    playAudio()
+    startDemoMode()
+    
+def startDemoMode():
+    global video_thread
+    global audio_thread
+    
+    video_thread = thread.start_new_thread(playVideo)
+    audio_thread = thread.start_new_thread(playAudio)
+    
+def playVideo():
+    print("Playing Video")
 
 def playAudio():
     time_end = time.time() * 60 * repeat_duration
