@@ -2,16 +2,20 @@
     "display": {
         "audio_format": ".mp3",
         "repeat_duration": 15,
-        "audio_break": 5
+        "audio_break": 5,
+        "video_format": ".mp4"
     },
     "conversation": {
         "language": "de-DE",
         "mappings": [
             {
-                "file": "das_klingt_ja_sehr_gastfreundlich.mp3",
+                "files": [
+                    "ich_bin_der_knight_industries_2000_meine_serien_nummer_lautet_227529.mp3"
+                ],
                 "keywords": [
-                    "nicht",
-                    "willkommen"
+                    "wer bist du",
+                    "wie heisst du",
+                    "stell dich vor"
                 ]
             }
         ]
