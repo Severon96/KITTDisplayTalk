@@ -30,6 +30,6 @@ command -v pip >/dev/null 2>&1 || {
 
 echo "Great, Pip is installed. Now we can proceed."
 
-pip3 install mutagen
-pip3 install python-vlc
+pip install mutagen
+pip install python-vlc
 

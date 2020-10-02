@@ -108,7 +108,4 @@ venv.bak/
 
 # Voicefiles
 display_audio/
-voicefiles/
-
-# setup-files from the web
-get-pip.py
+voicesfiles/
