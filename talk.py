@@ -24,11 +24,11 @@ def main(argv):
 def startModes(opts):
     for opt, arg in opts:
         if opt in ('-d', "--display"):
-            printModeEnteringInformation("Displaying-Mode")
+            print("Entering Displaying-Mode")
             runDisplay()
         #TODO Implement!
         elif opt in ("-c", "--conversation"):
-            printModeEnteringInformation("Conversation-Mode")
+            print("Entering Conversation-Mode")
             runConversation()
 
 def printModeEnteringInformation(modeName):
