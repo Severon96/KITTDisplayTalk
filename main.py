@@ -16,7 +16,7 @@ def main(argv):
     print_title()
 
     try:
-        opts, args = getopt.getopt(argv, "dc:c")
+        opts, args = getopt.getopt(argv, "dc")
         if len(opts) == 0:
             print("Please define a mode to start!")
             print("Exiting....")
@@ -33,11 +33,11 @@ def main(argv):
 
 
 def start_modes(opts):
+    print("start modes")
     for opt, arg in opts:
         if opt in ('-d', "--display"):
             print("Entering Displaying-Mode")
             display.run_display()
-        # TODO Implement!
         elif opt in ("-c", "--conversation"):
             print("Entering Conversation-Mode")
             conversation.run_conversation()
