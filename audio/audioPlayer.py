@@ -49,5 +49,5 @@ def parse_audio_output(current_sound_duration):
 
 def rename_audio_file(audio_path, filename):
     new_name = filename.replace(" ", "_")
-    os.rename(audio_path + "/" + filename, audio_path + "/" + new_name)
+    os.rename(join(audio_path, filename), join(audio_path, new_name))
     return new_name

@@ -4,9 +4,6 @@
 
 import sys
 import getopt
-from os.path import join, dirname
-
-from playsound import playsound
 
 from display import display
 from conversation import conversation
@@ -17,7 +14,7 @@ sys.path.insert(2, 'display')
 
 def main(argv):
     print_title()
-    # playsound(join(dirname(__file__), "display_audio", "test.mp3"))
+
     try:
         opts, args = getopt.getopt(argv, "dc:c")
         if len(opts) == 0:
