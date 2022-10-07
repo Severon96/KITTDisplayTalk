@@ -1,87 +1,76 @@
-import json, os, time, vlc, sys
+import json
 from os import listdir
-from os.path import isfile, join
-from mutagen.mp3 import MP3
+from os.path import isfile, join, dirname
+from video.videoPlayer import run_video_player
+from audio.audioPlayer import run_audio_player
 
-audio_path = os.getcwd() + "/display_audio"
+audio_path = join(dirname(dirname(__file__)), "display_audio")
+video_path = join(dirname(dirname(__file__)), "videofiles")
 
-audio_file_type = ""
-repeat_duration = 0
-audio_break = 0
+audio_config = {}
+video_config = {}
 
-audiofiles = None
+audio_thread = None
+video_thread = None
 
-def runDisplay():
-    printDisplayModeTitle()
-    loadConfig()
-    loadAudioFiles()
-    printConfig()
-    playAudio()
+audio_files = []
+video_files = []
 
-def playAudio():
-    time_end = time.time() * 60 * repeat_duration
-    fileCount = 0
-    while time.time() < time_end:
-        if(fileCount + 1 > len(audiofiles)):
-            fileCount = 0
-        
-        current_file_name = audiofiles[fileCount]
-        
-        if " " in current_file_name:
-            current_file_name = renameAudiofile(audio_path, current_file_name)
-        
-        current_file_path = audio_path + "/" + current_file_name
-        
-        print("Now Playing: " + current_file_name + "\r")
-        
-        player = vlc.MediaPlayer(current_file_path)
-        player.play()
-        
-        soundFile = MP3(current_file_path)
-        soundDuration = soundFile.info.length
-        
-        pauseAudioOutput(soundDuration)
-        
-        fileCount = fileCount + 1
-    
-    print("Display-Mode finished... Exiting")
-    sys.exit()
 
-def loadAudioFiles():
-    global audiofiles
-    global audio_file_type
-    audio_file_type = str(audio_file_type.encode("utf-8"), "utf-8")
-    audiofiles = [f for f in listdir(audio_path) if isfile(join(audio_path, f)) and f.endswith(audio_file_type)]
+def run_display():
+    print_display_mode_title()
+    load_config()
+    load_audio_files()
+    load_video_files()
+    print_config()
+    start_demo_mode()
 
-def loadConfig():
-    global audio_file_type
-    global repeat_duration
-    global audio_break
 
-    with open(os.getcwd() + "/config.json") as config_file:
+def start_demo_mode():
+    # Commented out, since it's not yet supported
+    run_video_player(video_config, video_files)
+    run_audio_player(audio_config, audio_files)
+
+
+def load_audio_files():
+    global audio_files
+    global audio_config
+    audio_file_type = str(audio_config["audio_file_type"].encode("utf-8"), "utf-8")
+    audio_files = [audio_file for audio_file in listdir(audio_path) if isfile(join(audio_path, audio_file)) and audio_file.endswith(audio_file_type)]
+
+
+def load_video_files():
+    global video_files
+    global video_config
+    video_file_type = str(video_config["video_file_type"].encode("utf-8"), "utf-8")
+    video_files = [video_file for video_file in listdir(video_path) if isfile(join(video_path, video_file)) and video_file.endswith(video_file_type)]
+
+
+def load_config():
+    global audio_config
+    global video_config
+
+    with open(join(dirname(dirname(__file__)), "config.json")) as config_file:
         data = json.load(config_file)
-        audio_file_type = data["display"]["audio_format"]
-        repeat_duration = data["display"]["repeat_duration"]
-        audio_break = data["display"]["audio_break"]
+        audio_config["audio_file_type"] = data["display"]["audio_format"]
+        audio_config["repeat_duration"] = data["display"]["repeat_duration"]
+        audio_config["audio_break"] = data["display"]["audio_break"]
 
-def pauseAudioOutput(currentSoundDuration):
-    time.sleep(currentSoundDuration)
-    time.sleep(audio_break)
+        video_config["video_file_type"] = data["display"]["video_format"]
+        video_config["repeat_duration"] = data["display"]["repeat_duration"]
 
-def renameAudiofile(audio_path, filename):
-    newName = filename.replace(" ", "_")
-    os.rename(audio_path + "/" + filename, audio_path + "/" + newName)
-    return newName
-    
-def printConfig():
+
+def print_config():
     print
     print("############ CONFIG #############")
-    print("#\tAudio-Type: " + audio_file_type + "\t#")
-    print("#\tRepeat-Duration: " + str(repeat_duration) + "\t#")
-    print("#\tAudio-Break: " + str(audio_break) + "\t\t#")
-    print("#\tAudio-Files loaded: " + str(len(audiofiles)) + "\t#")
+    print("#\tAudio-Type: " + audio_config["audio_file_type"] + "\t#")
+    print("#\tRepeat-Duration: " + str(audio_config["repeat_duration"]) + "\t#")
+    print("#\tAudio-Break: " + str(audio_config["audio_break"]) + "\t\t#")
+    print("#\tAudio-Files loaded: " + str(len(audio_files)) + "\t#")
+    print("#\tVideo-Files loaded: " + str(len(video_files)) + "\t#")
     print("#################################")
     print
-     
-def printDisplayModeTitle():
+
+
+def print_display_mode_title():
     print("#### DISPLAY MODE ####")

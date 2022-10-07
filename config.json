@@ -2,6 +2,7 @@
     "display": {
         "audio_format": ".mp3",
         "repeat_duration": 15,
-        "audio_break": 5
+        "audio_break": 5,
+        "video_format": ".mp4"
     }
 }

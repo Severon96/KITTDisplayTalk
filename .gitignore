@@ -107,5 +107,9 @@ venv.bak/
 .DS_Store
 
 # Voicefiles
-display_audio/
-voicesfiles/
+display_audio/**
+voicefiles/**
+videofiles/**
+
+# setup-files from the web
+get-pip.py
