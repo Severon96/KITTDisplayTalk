@@ -6,6 +6,8 @@ And it delivers a script to setup your Python-Environment.
 
 ## Requirement:
 * Python 3 needs to be installed
+* PortAudio needs to be installed
+* Python3-PyAudio needs to be installed
 
 # Setup
 The setup.sh is going to set up your Python-Environment so that you can start the Application without any issues. 
