@@ -1,9 +1,8 @@
-import json, os, time, sys, _thread
+import json
 from os import listdir
 from os.path import isfile, join, dirname
 from video.videoPlayer import run_video_player
 from audio.audioPlayer import run_audio_player
-from multiprocessing.dummy import Pool as ThreadPool
 
 audio_path = join(dirname(dirname(__file__)), "display_audio")
 video_path = join(dirname(dirname(__file__)), "videofiles")
@@ -29,7 +28,7 @@ def run_display():
 
 def start_demo_mode():
     # Commented out, since it's not yet supported
-    video_thread = _thread.start_new_thread(run_video_player, (video_config, video_files))
+    run_video_player(video_config, video_files)
     run_audio_player(audio_config, audio_files)
 
 

@@ -2,8 +2,6 @@ import time, os, sys
 from os.path import join, dirname
 import cv2
 
-from playsound import playsound
-
 video_config = None
 videofiles = None
 
@@ -23,7 +21,7 @@ def run_video_player(videoconfig, videofile_list):
     print(videofile_list)
 
     if len(videofiles) == 0:
-        print("No Audio-Files loaded... Exiting Audio-Playback.")
+        print("No Video-Files loaded... Exiting Video-Playback.")
         return None
 
     while time.time() < time_end:
@@ -50,7 +48,32 @@ def run_video_player(videoconfig, videofile_list):
 
 
 def play_video(file_path):
-    video = cv2.VideoCapture(file_path)
+    cap = cv2.VideoCapture(file_path)
+
+    fps = int(cap.get(cv2.CAP_PROP_FPS))
+
+    print("This is the fps ", fps)
+
+    if cap.isOpened() == False:
+        print("Error File Not Found")
+
+    while cap.isOpened():
+        ret, frame = cap.read()
+
+        if ret == True:
+
+            time.sleep(1 / fps)
+
+            cv2.imshow('frame', frame)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        else:
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
 
 def rename_video_file(video_path, filename):
     new_name = filename.replace(" ", "_")
